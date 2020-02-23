@@ -1,20 +1,31 @@
-<li class="list-group-item {{if @task.isComplete "is-complete"}}">
-  <div class="d-flex">
-    <h5 class="card-title flex-fill">
-      {{@task.name}}
-    </h5>
-    <div class="toggle-done ml-auto">
-      <div class="btn-group btn-group-sm" role="group">
-        <BsButton @type="secondary">Pin</BsButton>
-        {{#if @task.isComplete}}
-          <BsButton @type="primary" onClick={{action (mut @task.isComplete) false}}>Undo</BsButton>
-        {{else}}
-          <BsButton @type="primary" onClick={{action (mut @task.isComplete) true}}>Done</BsButton>
-        {{/if}}
+<li class="list-group-item pl-0 task-item border-top-0 border-bottom">
+  <div class="row">
+    <div class="col-9 d-flex">
+      <BsForm @formLayout="vertical" @model={{this}} @onSubmit={{action "submit"}} as |form|>
+        <form.element @controlType="checkbox" @label="" @property="checkbox" />
+      </BsForm>
+            <div class="task-text ml-2">
+        <h5 class="card-title flex-fill mb-1">
+          {{@task.name}}
+        </h5>
+        <div class="task-description">
+          {{@task.description}}
+        </div>
       </div>
     </div>
-  </div>
-  <div class="task-description">
-    {{@task.description}}
+    <div class="task-actions col-3 d-flex justify-content-end  align-content-center pr-0 pt-2">
+      <div class="pr-4">
+       <PinIcon @pinned={{@task.isPinned}} />
+      </div>
+      <div>
+        <button class="{{if @task.isComplete 'task-completed'}} task-toggle-button">
+          {{#if @task.isComplete}}
+              Completed
+          {{else}}
+              Done
+          {{/if}}
+        </button>
+      </div>
+    </div>
   </div>
 </li>

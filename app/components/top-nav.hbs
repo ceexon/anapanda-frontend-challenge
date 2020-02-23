@@ -1,0 +1,21 @@
+<div class="pt-3">
+  <BsNav @type="tabs" as |nav|>
+    <nav.item>
+      <nav.link-to @route="index">All Tasks</nav.link-to>
+    </nav.item>
+    <nav.item>
+      <nav.link-to @route="completed">Completed Tasks</nav.link-to>
+    </nav.item>
+    <nav.item>
+      <nav.link-to @route="pinned">Pinned Tasks</nav.link-to>
+    </nav.item>
+  </BsNav>
+</div>
+<div class="d-flex task-title border-bottom pb-1">
+  <div class="col-9 pl-4">
+    Task
+  </div>
+  <div class="col-3 text-right">
+    Action
+  </div>
+</div>
