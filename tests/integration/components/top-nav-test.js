@@ -12,15 +12,12 @@ module('Integration | Component | top-nav', function(hooks) {
 
     await render(hbs`<TopNav />`);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <TopNav>
-        template block text
-      </TopNav>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom('.top-nav-tabs').exists();
+    assert.dom('.task-title ').exists();
+    assert.dom('.nav-item:nth-child(1) .nav-link').hasText('All Tasks');
+    assert.dom('.nav-item:nth-child(2) .nav-link').hasText('Completed Tasks');
+    assert.dom('.nav-item:nth-child(3) .nav-link').hasText('Pinned Tasks');
+    assert.dom('.task-title .col-9').hasText('Task');
+    assert.dom('.task-title  .col-3').hasText('Action');
   });
 });
