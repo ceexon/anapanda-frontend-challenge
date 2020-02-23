@@ -6,21 +6,32 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Component | single-task', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it renders a single task', async function(assert) {
+    this.setProperties({
+      task: {
+        id: 1,
+        name: 'Solve all github issues',
+        description: 'Solve the world\'s Github issues.',
+        isComplete: true,
+        creator: 2,
+        isPinned: false
+      }
+    });
 
-    await render(hbs`<SingleTask />`);
+    await render(hbs`<SingleTask @task={{this.task}} />`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom('.list-group-item').exists();
+    assert.dom('h5').hasText(this.task.name);
+    assert.dom('.task-description').hasText(this.task.description);
+    assert.dom('svg').exists();
+    assert.dom('button.task-toggle-button.task-completed').hasText("Completed");
 
-    // Template block usage:
-    await render(hbs`
-      <SingleTask>
-        template block text
-      </SingleTask>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    this.setProperties({
+      task: {
+        ...this.task,
+        isComplete: false
+      }
+    });
+    assert.dom('button.task-toggle-button').hasText("Done");
   });
 });

@@ -1,12 +1,19 @@
-<div class="main-container">
-  <div class="side-nav">
+<div class="container-fluid w-100 row">
+  <div class="side-nav-wrapper col-2 py-5 px-0">
+    <div class="mb-5 text-center logo">
+      <img
+      ...attributes
+      src="../assets/images/logo.svg"
+      alt="Anapanda"
+      >
+    </div>
     <SideNav />
   </div>
 
-  <div class="row justify-content-md-center">
-    <div class="col-md-6">
+  <div class="col-10 py-4 px-5">
+    <div class="col-10 px-0">
+      <TopNav />
       {{outlet}}
-
     </div>
   </div>
 </div>

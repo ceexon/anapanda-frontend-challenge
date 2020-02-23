@@ -23,3 +23,9 @@
 /.node_modules.ember-try/
 /bower.json.ember-try
 /package.json.ember-try
+.idea/.gitignore
+.idea/anapanda-frontend-challenge.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml

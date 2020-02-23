@@ -6,21 +6,13 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Component | side-nav', function(hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it renders the side nav', async function(assert) {
+    await render(hbs`<SideNav />`);
 
     await render(hbs`<SideNav />`);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <SideNav>
-        template block text
-      </SideNav>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom('.nav').exists();
+    assert.dom('.nav-link.active span').hasText('Tasks');
+    assert.dom('.home-tab a span').hasText('Home');
   });
 });

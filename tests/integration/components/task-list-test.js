@@ -7,20 +7,20 @@ module('Integration | Component | task-list', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    this.setProperties({
+      tasks:[{
+        id: 1,
+        name: 'Solve all github issues',
+        description: 'Solve the world\'s Github issues.',
+        isComplete: true,
+        creator: 2,
+        isPinned: false
+      }]
+    });
 
-    await render(hbs`<TaskList />`);
+    await render(hbs`<TaskList @tasks={{this.tasks}} />`);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      <TaskList>
-        template block text
-      </TaskList>
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.dom( '.list-group.list-group-flush').exists();
+    assert.dom( '.list-group-item').exists();
   });
 });
