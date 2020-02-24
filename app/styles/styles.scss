@@ -38,7 +38,7 @@ body, * {
 }
 
 /* Top Nav */
-.nav.nav-tabs {
+ul.nav.nav-tabs {
   border: none;
 
   .nav-item {
@@ -62,7 +62,7 @@ body, * {
     padding-left: 0;
   }
   .nav-item.active {
-    a.nav-link.active {
+    a.nav-link {
       border: none;
       border-bottom: 2px solid #0854D9;
       color: #0854D9 !important;
@@ -117,9 +117,28 @@ body, * {
   }
 }
 
-.position-absolute.badge-pill {
-  right: -20%;
-  top: 35%;
+.complete-count.badge-pill {
   background-color: #0854D9 !important;
+}
+
+.incomplete-tasks {
+  width: 310px;
+  height: 161px;
+  margin: auto;
+  background: transparent url('../assets/images/incomplete.svg') 0% 0% no-repeat padding-box;
+}
+
+.complete-tasks {
+  width: 310px;
+  height: 161px;
+  margin: auto;
+  background: transparent url('../assets/images/complete.jpg') 0% 0% no-repeat padding-box;
+  background-size: cover;
+}
+
+.pin-title {
+  font-family: "Inter Semi Bold", sans-serif;
+  font-size: 14px;
+  color: #AFB2B9;
 }
 

@@ -1,5 +1,9 @@
 <ul class="list-group list-group-flush">
   {{#each @tasks as |task|}}
-    <SingleTask @task={{task}} />
+    <SingleTask @toggleComplete={{action @toggleComp}} @task={{task}} @togglePinTask={{action @togglePin}} />
+  {{else}}
+    <div>
+      {{yield}}
+    </div>
   {{/each}}
 </ul>
