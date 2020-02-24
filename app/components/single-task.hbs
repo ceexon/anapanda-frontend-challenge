@@ -1,10 +1,11 @@
-<li class="list-group-item pl-0 task-item border-top-0 border-bottom">
+<li class="list-group-item pl-0 task-item border-top-0 border-bottom {{if @task.isPinned "pinned"}}">
   <div class="row">
     <div class="col-9 d-flex">
-      <BsForm @formLayout="vertical" @model={{this}} @onSubmit={{action "submit"}} as |form|>
-        <form.element @controlType="checkbox" @label="" @property="checkbox" />
-      </BsForm>
-            <div class="task-text ml-2">
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" data-task={{@task.id}} checked={{@task.isComplete}} {{on "change" this.toggleCompleteTask}} class="custom-control-input" id="check-{{@task.id}}">
+        <label class="custom-control-label shadow-none" for="check-{{@task.id}}"></label>
+      </div>
+      <div class="task-text ml-2">
         <h5 class="card-title flex-fill mb-1">
           {{@task.name}}
         </h5>
@@ -14,15 +15,15 @@
       </div>
     </div>
     <div class="task-actions col-3 d-flex justify-content-end  align-content-center pr-0 pt-2">
-      <div class="pr-4">
-       <PinIcon @pinned={{@task.isPinned}} />
+      <div class="pr-3">
+        <PinIcon @toPin={{@task.id}} @pinned={{@task.isPinned}} />
       </div>
       <div>
-        <button class="{{if @task.isComplete "task-completed"}} task-toggle-button">
+        <button data-task={{@task.id}} class="{{if @task.isComplete "task-completed"}} task-toggle-button" {{on "click" this.toggleCompleteTask}}>
           {{#if @task.isComplete}}
-              Completed
+            Completed
           {{else}}
-              Done
+            Done
           {{/if}}
         </button>
       </div>

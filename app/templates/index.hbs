@@ -1,27 +1,8 @@
-<TaskList @tasks={{this.model}} />
+{{#if this.model.pinned}}
+  <div class="py-4">
+    <h5>Pinned Tasks</h5>
+    <TaskList @tasks={{this.model.pinned}} />
+  </div>
+{{/if}}
 
-<!--<nav class="navbar navbar-light bg-light">-->
-<!--  <span class="navbar-text">-->
-<!--    <strong>Completed Tasks:</strong> {{this.completedTasks}}-->
-<!--  </span>-->
-<!--</nav>-->
-<!--<div class="list-group-item {{if this.pinnedTask.isComplete "is-complete"}}">-->
-<!--    <div class="d-flex">-->
-<!--      <h5 class="card-title flex-fill">-->
-<!--        {{this.pinnedTask.name}}-->
-<!--      </h5>-->
-<!--      <div class="toggle-done ml-auto">-->
-<!--        <div class="btn-group btn-group-sm" role="group">-->
-<!--          <BsButton @type="secondary">Unpin</BsButton>-->
-<!--          {{#if this.pinnedTask.isComplete}}-->
-<!--            <BsButton @type="primary">Undo</BsButton>-->
-<!--          {{else}}-->
-<!--            <BsButton @type="primary">Done</BsButton>-->
-<!--          {{/if}}-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="task-description">-->
-<!--      {{this.pinnedTask.description}}-->
-<!--    </div>-->
-<!--</div>-->
+<TaskList @tasks={{this.model.tasks}} />

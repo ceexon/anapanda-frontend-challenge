@@ -7,9 +7,6 @@ export default class IndexRoute extends Route {
 
 
   model() {
-    return {
-      pinned : this.task.tasks.filter(task => task.isPinned && !task.isComplete),
-      tasks : this.task.tasks.filter(task => !task.isPinned && !task.isComplete),
-    }
+    return this.task.tasks.filter(task => task.isComplete);
   }
 }

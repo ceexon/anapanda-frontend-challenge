@@ -4,10 +4,10 @@
       <nav.link-to @route="index">All Tasks</nav.link-to>
     </nav.item>
     <nav.item>
-      <nav.link-to @route="completed">Completed Tasks</nav.link-to>
-    </nav.item>
-    <nav.item>
-      <nav.link-to @route="pinned">Pinned Tasks</nav.link-to>
+      <nav.link-to @route="completed" class="position-relative">
+        Completed Tasks
+        <span class="badge position-absolute badge-primary badge-pill"> {{this.completed}} </span>
+      </nav.link-to>
     </nav.item>
   </BsNav>
 </div>
