@@ -38,10 +38,10 @@
         {{#if this.pinCount}}
           <p class="py-2">{{this.pinCount}} pin(s) to go!!!</p>
         {{else}}
-        <div class="container text-center mt-5 pt-5">
-          <div class="complete-tasks" />
-          <p class="text-center incomplete-text text-success py-2">Seems like your done. Hurrah!!!</p>
-        </div>
+          <div class="container text-center mt-5 pt-5">
+            <div class="complete-tasks" />
+            <p class="text-center incomplete-text text-success py-2">Seems like your done. Hurrah!!!</p>
+          </div>
         {{/if}}
       </TaskList>
     </tab.pane>
@@ -49,11 +49,12 @@
       <TaskList
         @toggleComp={{action this.completeTask}}
         @togglePin={{action this.pinTask}}
-        @tasks={{this.complete}}>
-          <div class="container text-center mt-5 pt-5">
-            <div class="incomplete-tasks" />
-            <p class="text-center incomplete-text">Looks like you haven't completed any tasks</p>
-          </div>
+        @tasks={{this.complete}}
+      >
+        <div class="container text-center mt-5 pt-5">
+          <div class="incomplete-tasks" />
+          <p class="text-center incomplete-text">Looks like you haven't completed any tasks</p>
+        </div>
       </TaskList>
     </tab.pane>
   </div>

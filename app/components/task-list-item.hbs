@@ -2,6 +2,6 @@
   {{#each @tasks as |task|}}
     <SingleTask @task={{task}} />
   {{else}}
-    {{yeild}}
+    {{yield}}
   {{/each}}
 </ul>

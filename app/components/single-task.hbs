@@ -20,9 +20,9 @@
     </div>
     <div class="task-actions col-3 d-flex justify-content-end  align-content-center pr-0 pt-2">
       <div class="pr-3">
-        <span onclick={{action @togglePinTask @task.id}}>
+        <button class="pin-btn shadow-none border-0" onclick={{action @togglePinTask @task.id}}>
           <PinIcon @pinned={{@task.isPinned}} />
-        </span>
+        </button>
       </div>
       <div>
         <button

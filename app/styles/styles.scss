@@ -142,3 +142,18 @@ ul.nav.nav-tabs {
   color: #AFB2B9;
 }
 
+.pin-btn {
+  width: max-content;
+  height: max-content;
+  padding: 2px 4px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.pin-btn:active {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
