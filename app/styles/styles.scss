@@ -82,6 +82,20 @@ body, * {
     color: #888C93;
     font-size: 14px;
   }
+
+  #pin-icon {
+    cursor: pointer;
+  }
+
+
+}
+
+.task-item.pinned {
+  background-color: #F7FCFD;
+}
+
+.task-item:last-child {
+  border-bottom: 1px solid #F7FCFD;
 }
 
 .task-actions {
@@ -101,5 +115,11 @@ body, * {
     background-color: #26D692;
     color: #ffffff;
   }
+}
+
+.position-absolute.badge-pill {
+  right: -20%;
+  top: 35%;
+  background-color: #0854D9 !important;
 }
 
