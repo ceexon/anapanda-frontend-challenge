@@ -1,10 +1,11 @@
 import Service from '@ember/service';
 import {inject as service} from "@ember/service";
 import { A } from '@ember/array';
+import { tracked } from "@glimmer/tracking";
 
 export default class TaskService extends Service {
   @service store;
-  tasks = A([
+  @tracked tasks = A([
     this.store.createRecord('task', {
         id: 1,
         name: 'Solve all github issues',
@@ -46,7 +47,6 @@ export default class TaskService extends Service {
         isPinned: true
       }),
   ]);
-  completed = this.tasks.filter(task => task.isComplete).length;
 
   pinToggle(id) {
     const task = this.getTask(id);
@@ -56,13 +56,22 @@ export default class TaskService extends Service {
   completeToggle(id) {
     const task = this.getTask(id);
     task.isComplete = !task.isComplete;
-    if(task.isComplete)
-      this.completed += 1;
-    else
-      this.completed -= 1;
   }
 
   getTask(id) {
     return this.tasks.findBy('id', id);
+  }
+
+  removeTask(tasksList, taskId) {
+    const task = tasksList.findBy('id', taskId);
+    const i = tasksList.indexOf(task);
+    tasksList.splice(i, 1);
+    return tasksList;
+  }
+
+  addTask(tasksList, taskId) {
+    const task = this.getTask(taskId);
+    tasksList.push(task);
+    return tasksList;
   }
 }

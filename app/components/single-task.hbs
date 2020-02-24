@@ -2,7 +2,11 @@
   <div class="row">
     <div class="col-9 d-flex">
       <div class="custom-control custom-checkbox">
-        <input type="checkbox" data-task={{@task.id}} checked={{@task.isComplete}} {{on "change" this.toggleCompleteTask}} class="custom-control-input" id="check-{{@task.id}}">
+        <input type="checkbox"
+         data-task={{@task.id}}
+         checked={{@task.isComplete}}
+         onchange={{action @toggleComplete @task.id}}
+         class="custom-control-input" id="check-{{@task.id}}">
         <label class="custom-control-label shadow-none" for="check-{{@task.id}}"></label>
       </div>
       <div class="task-text ml-2">
@@ -16,15 +20,18 @@
     </div>
     <div class="task-actions col-3 d-flex justify-content-end  align-content-center pr-0 pt-2">
       <div class="pr-3">
-        <PinIcon @toPin={{@task.id}} @pinned={{@task.isPinned}} />
+        <button class="pin-btn shadow-none border-0" onclick={{action @togglePinTask @task.id}}>
+          <PinIcon @pinned={{@task.isPinned}} />
+        </button>
       </div>
       <div>
-        <button data-task={{@task.id}} class="{{if @task.isComplete "task-completed"}} task-toggle-button" {{on "click" this.toggleCompleteTask}}>
-          {{#if @task.isComplete}}
-            Completed
-          {{else}}
-            Done
-          {{/if}}
+        <button
+          data-task={{@task.id}}
+          class="{{if @task.isComplete "task-completed"}}
+          task-toggle-button"
+          onclick={{action @toggleComplete @task.id}}
+        >
+          {{if @task.isComplete "Undo" "Done"}}
         </button>
       </div>
     </div>

@@ -1,8 +1,61 @@
-{{#if this.model.pinned}}
-  <div class="py-4">
-    <h5>Pinned Tasks</h5>
-    <TaskList @tasks={{this.model.pinned}} />
+<BsTab @customTabs={{true}} as |tab|>
+  <BsNav @type="tabs" as |nav|>
+    <nav.item @active={{bs-eq tab.activeId "all-tasks"}}>
+      <a href="#all-tasks" class="nav-link" role="tab" {{action tab.select "all-tasks"}}>
+        All Tasks
+      </a>
+    </nav.item>
+    <nav.item @active={{bs-eq tab.activeId "complete-taksk"}}>
+      <a href="#all-tasks" class="nav-link" role="tab" {{action tab.select "complete-taksk"}}>
+        Completed Tasks
+        <span class="badge complete-count badge-primary badge-pill"> {{this.completeCount}} </span>
+      </a>
+    </nav.item>
+  </BsNav>
+  <div class="d-flex task-title border-bottom pb-1">
+    <div class="col-9 pl-4">
+      Task
+    </div>
+    <div class="col-3 text-right">
+      Action
+    </div>
   </div>
-{{/if}}
-
-<TaskList @tasks={{this.model.tasks}} />
+  <div class="tab-content">
+    <tab.pane @id="all-tasks" @title="Tab 1">
+      {{#if this.pinCount}}
+        <div class="py-4">
+          <h5 class="pin-title border-bottom pb-2">Pinned tasks</h5>
+          <TaskList
+            @toggleComp={{action this.completeTask}}
+            @togglePin={{action this.pinTask}}
+            @tasks={{this.pinned}} />
+        </div>
+      {{/if}}
+      <TaskList
+        @toggleComp={{action this.completeTask}}
+        @togglePin={{action this.pinTask}}
+        @tasks={{this.incomplete}}>
+        {{#if this.pinCount}}
+          <p class="py-2">{{this.pinCount}} pin(s) to go!!!</p>
+        {{else}}
+          <div class="container text-center mt-5 pt-5">
+            <div class="complete-tasks" />
+            <p class="text-center incomplete-text text-success py-2">Seems like your done. Hurrah!!!</p>
+          </div>
+        {{/if}}
+      </TaskList>
+    </tab.pane>
+    <tab.pane @id="complete-taksk" @title="Tab 2">
+      <TaskList
+        @toggleComp={{action this.completeTask}}
+        @togglePin={{action this.pinTask}}
+        @tasks={{this.complete}}
+      >
+        <div class="container text-center mt-5 pt-5">
+          <div class="incomplete-tasks" />
+          <p class="text-center incomplete-text">Looks like you haven't completed any tasks</p>
+        </div>
+      </TaskList>
+    </tab.pane>
+  </div>
+</BsTab>
